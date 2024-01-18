@@ -1,0 +1,18 @@
+name: funconnect
+version: "3.4"
+x-shared: &common
+  ipc: host
+  volumes:
+    - ${SRC_PATH}:/src
+    - /mnt:/mnt
+  env_file:
+    - .env
+
+services:
+  project_name:
+    <<: *common
+    build: .
+    container_name: project_name
+    ports:
+      - "0.0.0.0:8888:8888"
+    entrypoint: /src/docker-compose-example/entrypoint.sh
